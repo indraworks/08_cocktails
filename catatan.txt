@@ -1,0 +1,127 @@
+kita buat componentnya dan pagemua 
+stlahnya baru buat react-router-domnya 
+karena sudah update ke v6 jadi bisa lihat project react-router0dom sbllulmhnya 
+
+///react router-6
+
+//context.js
+
+//utk api --> 
+kita menggunakan cocktaildb api alamatnya:https://www.thecocktaildb.com/api.php 
+yg dipakai adalah name dan id utk cari single cocktail 
+
+Search cocktail by name
+www.thecocktaildb.com/api/json/v1/1/search.php?s=margarita
+
+List all cocktails by first letter
+www.thecocktaildb.com/api/json/v1/1/search.php?f=a
+
+Search ingredient by name
+www.thecocktaildb.com/api/json/v1/1/search.php?i=vodka
+
+Lookup full cocktail details by id
+www.thecocktaildb.com/api/json/v1/1/lookup.php?i=11007
+
+Lookup ingredient by ID
+www.thecocktaildb.com/api/json/v1/1/lookup.php?iid=552
+
+
+//utk singleCocktails didapat data drinks sbb:
+idDrink: "17222"
+strAlcoholic: "Alcoholic"
+strCategory: "Cocktail"
+strCreativeCommonsConfirmed: "No"
+strDrink: "A1"
+strDrinkAlternate: null
+strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg"
+strGlass: "Cocktail glass"
+strIBA: null
+strImageAttribution: null
+strImageSource: null
+strIngredient1: "Gin"
+strIngredient2: "Grand Marnier"
+strIngredient3: "Lemon Juice"
+strIngredient4: "Grenadine"
+strIngredient5: null
+strIngredient6: null
+strIngredient7: null
+strIngredient8: null
+strIngredient9: null
+strIngredient10: null
+strIngredient11: null
+strIngredient12: null
+strIngredient13: null
+strIngredient14: null
+strIngredient15: null
+strInstructions: "Pour all ingredients into a cocktail shaker, mix and serve over ice into a chilled glass."
+utk itukita buat desttuctivenya sbb:
+nah sbnarnya di context.js sudah kita buat bisa dicheck lagi:
+if (drinks) {
+        const newCocktails = drinks.map((item) => {
+          const { idDrink, strDrink, strDrinkThumb, strAlcoholic, strGlass } =
+            item
+
+          return {
+            id: idDrink,
+            name: strDrink,
+            image: strDrinkThumb,
+            info: strAlcoholic,
+            glass: strGlass,
+          }
+        })
+kita buat yg lalu id element masing2 
+nah skrg kita buat lagi tapi lebih detail utk render 1 buah cocktail saja 
+dgn menambahkan field instruction dan ingredient yg teridir dari bbrapa eleent array:
+
+idDrink: "17222"
+strAlcoholic: "Alcoholic"
+strCategory: "Cocktail"
+strCreativeCommonsConfirmed: "No"
+strDrink: "A1"
+strDrinkAlternate: null
+strDrinkThumb: "https://www.thecocktaildb.com/images/media/drink/2x8thr1504816928.jpg"
+strGlass: "Cocktail glass"
+strIBA: null
+strImageAttribution: null
+strImageSource: null
+strIngredient1: "Gin"
+strIngredient2: "Grand Marnier"
+strIngredient3: "Lemon Juice"
+strIngredient4: "Grenadine"
+strIngredient5: null
+nah akan menjadi:
+if(data.drinks) {
+    const { 
+        strDrink:name,
+        strAlcoholic:info,
+        strDrinkThumb:image,
+        strCategory:category,
+        strGlass:glass,
+        strInstructions:instructions,
+        strIngredient1,
+        strIngredient2,
+        strIngredient3,
+        strIngredient4,
+        strIngredient5,
+
+    } =data.drinks[0]
+     //ingredienstnya kitajadikan 
+     const ingredients = [
+        strIngredient1,
+        strIngredient2,
+        strIngredient3,
+        strIngredient4,
+        strIngredient5,
+     ]
+     //kita masukan ke cocktail
+     const newCocktail = {
+        name,
+        image,
+        info,
+        category,
+        glass,
+        instructions,
+        ingredients
+     }
+
+}
